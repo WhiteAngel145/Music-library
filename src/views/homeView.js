@@ -1,4 +1,4 @@
-import { render, html } from '../library/lit.js';
+import { render, html } from '../lib/lit-html.js';
 
 const template = () => html`
 	      <!-- Home page -->

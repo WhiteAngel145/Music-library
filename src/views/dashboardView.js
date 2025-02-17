@@ -1,4 +1,4 @@
-import { render, html } from "../library/lit";
+import { render, html } from '../lib/lit-html.js';
 
 const template = () => html`
   <section id="dashboard">

@@ -7,7 +7,8 @@
     "test": "mocha tests",
     "start": "http-server -a localhost -p 3000 -P http://localhost:3000? -c-1",
     "dev": "vite",
-    "rest": "node server/server.js"
+    "rest": "node server/server.js",
+    "devServer": "lite-server"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "chai": "4.3.4",
     "http-server": "0.12.3",
+    "lite-server": "^2.6.1",
     "mocha": "8.3.2",
     "playwright-chromium": "1.9.2",
     "vite": "^6.1.0"

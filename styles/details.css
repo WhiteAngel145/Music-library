@@ -68,7 +68,7 @@ span {
 #likes{
   width: 95%;
   text-align: center;
-  margin: 65px 0px 20px 0px;
+  margin: 35px 0px 20px 0px;
   font-weight: bold;
   font-size: 21px;
 }
@@ -77,7 +77,7 @@ span {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 35px;
   margin-bottom: 25px;
 }
 

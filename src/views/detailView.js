@@ -1,8 +1,9 @@
 import { render, html, nothing } from '../lib/lit-html.js';
-import { getDetails } from '../services/dataService.js';
+import { getDetails, sendLikes, getTotalLies, getIsLike } from '../services/dataService.js';
 import { getUserData } from '../utils/userUtils.js';
+import page from '../../node_modules/page/page.mjs'
 
-const template = (data, isOwner, userData) => html`
+const template = (data, isOwner, userData, isLike, likes, onLike) => html`
     <section id="details">
       <div id="details-wrapper">
         <p id="details-title">Album Details</p>
@@ -18,12 +19,13 @@ const template = (data, isOwner, userData) => html`
           <p><strong>Label:</strong><span id="details-label">${data.label}</span></p>
           <p><strong>Sales:</strong><span id="details-sales">${data.sales}</span></p>
         </div>
-        <div id="likes">Likes: <span id="likes-count">0</span></div>
-        <!--Edit and Delete are only for creator-->
+        <div id="likes">Likes: <span id="likes-count">${likes}</span></div>
         <div id="action-buttons">
           ${userData
           ? !isOwner
-            ? html`<a href="/like${data._id}" id="like-btn">Like</a>`
+            ? !isLike 
+                ? html`<a @click=${onLike} href="#" id="like-btn">Like</a>`
+                : nothing
             : html`
                   <a href="/edit${data._id}" id="edit-btn">Edit</a>
                   <a href="/delete${data._id}" id="delete-btn">Delete</a>
@@ -40,10 +42,16 @@ export async function detailsView(ctx) {
   const detailsAlbum = await getDetails(idAlbum);
   const userData = getUserData();
   const isOwner = userData && userData._id === detailsAlbum._ownerId;
-
+  const likes = await getTotalLies(idAlbum);
+  const isLike = await getIsLike(idAlbum, userData._id);
   console.log('Album Details --------> ', detailsAlbum);
   console.log('userData --------> ', userData);
   
+  async function likeEventHandler(event) {
+    await sendLikes({albumId: idAlbum});
+    page.redirect(`/details/${idAlbum}`);
+  }
   
-	render(template(detailsAlbum, isOwner, userData));
+	render(template(detailsAlbum, isOwner, userData, isLike, likes, likeEventHandler));
+
 }

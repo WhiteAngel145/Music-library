@@ -1,5 +1,5 @@
 import { render, html, nothing } from '../lib/lit-html.js';
-import { getDetails, sendLikes, getTotalLies, getIsLike } from '../services/dataService.js';
+import { getDetails, sendLikes, getTotalLikes, getIsLike } from '../services/dataService.js';
 import { getUserData } from '../utils/userUtils.js';
 import page from '../../node_modules/page/page.mjs'
 
@@ -41,11 +41,14 @@ export async function detailsView(ctx) {
   const idAlbum = ctx.params.id;
   const detailsAlbum = await getDetails(idAlbum);
   const userData = getUserData();
-  const isOwner = userData && userData._id === detailsAlbum._ownerId;
-  const likes = await getTotalLies(idAlbum);
-  const isLike = await getIsLike(idAlbum, userData._id);
-  console.log('Album Details --------> ', detailsAlbum);
-  console.log('userData --------> ', userData);
+  let isOwner =  false;
+  let isLike = false;
+
+  if (userData) {
+    isOwner = userData._id === detailsAlbum._ownerId;
+    isLike = await getIsLike(idAlbum, userData._id);
+  }
+  const likes = await getTotalLikes(idAlbum);
   
   async function likeEventHandler(event) {
     await sendLikes({albumId: idAlbum});

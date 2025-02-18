@@ -9,7 +9,9 @@ import { detailsView } from "./views/detailView.js";
 import { editView } from "./views/editView.js";
 import { logoutView } from "./views/logoutView.js";
 import { deleteView } from "./views/deleteView.js";
+import { navigationController } from "./middlewares/navigation.js";
 
+page(navigationController);
 page('/', homeView);
 page('/register', registerView);
 page('/login', loginView);
@@ -19,6 +21,5 @@ page('/dashboard', dashboardView);
 page('/details/:id', detailsView);
 page('/edit/:id', editView);
 page('/delete/:id', deleteView);
-// page('/like', likeView);
 
 page();

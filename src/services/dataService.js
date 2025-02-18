@@ -26,7 +26,7 @@ export async function sendLikes(albumId) {
 	return likes;
 }
 
-export async function getTotalLies(albumId) {
+export async function getTotalLikes(albumId) {
 	const likes = await api.get(endpoint.totalLies(albumId));
 	return likes;
 }

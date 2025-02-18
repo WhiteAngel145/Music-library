@@ -8,6 +8,7 @@ import { dashboardView } from "./views/dashboardView.js";
 import { detailsView } from "./views/detailView.js";
 import { editView } from "./views/editView.js";
 import { logoutView } from "./views/logoutView.js";
+import { deleteView } from "./views/deleteView.js";
 
 page('/', homeView);
 page('/register', registerView);
@@ -17,7 +18,7 @@ page('/create', createView);
 page('/dashboard', dashboardView);
 page('/details/:id', detailsView);
 page('/edit/:id', editView);
-// page('/delete/:id', deleteView);
+page('/delete/:id', deleteView);
 // page('/like', likeView);
 
 page();

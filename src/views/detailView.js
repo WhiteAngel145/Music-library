@@ -27,8 +27,8 @@ const template = (data, isOwner, userData, isLike, likes, onLike) => html`
                 ? html`<a @click=${onLike} href="#" id="like-btn">Like</a>`
                 : nothing
             : html`
-                  <a href="/edit${data._id}" id="edit-btn">Edit</a>
-                  <a href="/delete${data._id}" id="delete-btn">Delete</a>
+                  <a href="/edit/${data._id}" id="edit-btn">Edit</a>
+                  <a href="/delete/${data._id}" id="delete-btn">Delete</a>
                   `
           : nothing
           }

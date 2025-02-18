@@ -4,6 +4,8 @@ const endpoint = {
 	dashboard: '/data/albums?sortBy=_createdOn%20desc',
 	details: '/data/albums/',
 	addLike: '/data/likes',
+	addNewAlbum: '/data/albums',
+	edit: (albumId) => `/data/albums/${albumId}`,
 	totalLies: (albumId) => `/data/likes?where=albumId%3D%22${albumId}%22&distinct=_ownerId&count`,
 	isLike: (albumId, userId) => `/data/likes?where=albumId%3D%22${albumId}%22%20and%20_ownerId%3D%22${userId}%22&count`
 }
@@ -31,4 +33,14 @@ export async function getTotalLies(albumId) {
 export async function getIsLike(albumId, userId) {
 	const isLike = await api.get(endpoint.isLike(albumId, userId));
 	return isLike;
+}
+
+export async function editAlbum(albumId, data) {
+	const editAlbum = await api.put(endpoint.edit(albumId),data);
+	return editAlbum;
+}
+
+export async function addAlbum(data) {
+	const addAlbum = await api.post(endpoint.addNewAlbum, data);
+	return addAlbum;
 }

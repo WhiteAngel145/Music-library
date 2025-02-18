@@ -7,11 +7,12 @@ import { createView} from "./views/createView.js";
 import { dashboardView } from "./views/dashboardView.js";
 import { detailsView } from "./views/detailView.js";
 import { editView } from "./views/editView.js";
+import { logoutView } from "./views/logoutView.js";
 
 page('/', homeView);
 page('/register', registerView);
 page('/login', loginView);
-// page('/logout', logoutView);
+page('/logout', logoutView);
 page('/create', createView);
 page('/dashboard', dashboardView);
 page('/details/:id', detailsView);

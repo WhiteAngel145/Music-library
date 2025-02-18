@@ -33,12 +33,11 @@ async function request(method, url, data) {
 		}
 
 		if (response.status === 204) {
-			return await response.json();
+			return;
 		}
-		return await response.json();
+		return response.json();
 	} catch (error) {
-		alert(error.message);
-		throw error;
+		throw alert(error.message);
 	}
 }
 

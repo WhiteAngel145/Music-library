@@ -20,6 +20,6 @@ export async function register(data) {
 }
 
 export async function logout() {
-	await api.del(endpoints.logout);
+	api.get(endpoints.logout);
 	clearUserData();
 }
